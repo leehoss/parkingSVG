@@ -1,2 +1,0 @@
-# parkingSVG
-Created with CodeSandbox
