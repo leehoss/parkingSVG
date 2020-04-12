@@ -21,6 +21,7 @@ text {
 
 .txt-avail {
   font-size: 106px;
+  letter-spacing: -0.1em;
   fill: #fff;
 }
 

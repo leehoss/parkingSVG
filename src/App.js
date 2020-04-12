@@ -1,20 +1,37 @@
 import React from "react";
 import "./styles.css";
 
-export default function App() {
-  let state = "OPEN";
-  let fill = "#00984a";
-  let availableSpace = 0;
+function Detail(props) {
+  return (
+    <g>
+      <text id="_100_HR" class="txt-rate" transform="translate(13.047 403.361)">
+        <tspan x="0" y="0">
+          ${props.rate}/{props.rate_div}
+        </tspan>
+      </text>
+      <text
+        id="_146"
+        data-name="146"
+        class="txt-rate"
+        transform="translate(13.047 618.361)"
+      >
+        <tspan x="0" y="0">
+          {props.availableSpace}
+        </tspan>
+        <tspan class="txt-avail" x="200" y="0">
+          AVAIL
+        </tspan>
+      </text>
+    </g>
+  );
+}
 
-  let stateSpan;
-  switch (state) {
+function State(props) {
+  let state;
+  switch (props.status) {
     case "OPEN":
-      stateSpan = (
-        <text
-          id="status"
-          class="txt-open"
-          transform="translate(533.653 345.484)"
-        >
+      state = (
+        <text id="status" class="txt-open" transform="translate(9.558 205.24)">
           <tspan x="0" y="0">
             OPEN
           </tspan>
@@ -22,10 +39,32 @@ export default function App() {
       );
       break;
     case "RESERVED":
+      state = (
+        <g>
+          <text
+            id="RESERVED"
+            class="txt-reserved"
+            transform="translate(15 172)"
+          >
+            <tspan x="0" y="0">
+              RESERVED
+            </tspan>
+          </text>
+          <text
+            id="ONLY"
+            class="txt-reserved"
+            transform="translate(19.547 339.651)"
+          >
+            <tspan x="0" y="0">
+              ONLY
+            </tspan>
+          </text>
+        </g>
+      );
       break;
     default:
-      stateSpan = (
-        <text id="status" class="txt-red" transform="translate(15 172)">
+      state = (
+        <text id="status" class="txt-closed" transform="translate(15 172)">
           <tspan x="0" y="0">
             CLOSED
           </tspan>
@@ -33,63 +72,36 @@ export default function App() {
       );
       break;
   }
-  if (availableSpace <= 20) {
-    fill = "#FDA936";
-  }
+  return state;
+}
+
+export default function App() {
+  let status = "FULL";
+  let availableSpace = 20;
+  //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
+  let ratePeriod = "HR";
+  let rate = 50;
+
   if (availableSpace === 0) {
-    state = "CLOSED";
-    fill = "#DE2145";
+    status = "CLOSED";
   }
 
-  let availableSpaceFill = availableSpace.toString().padStart(4, "0");
-  let rate_div = "HR";
-  let rate = 50;
+  let detailBlock =
+    status === "OPEN" ? (
+      <Detail
+        rate={rate}
+        rate_div={ratePeriod}
+        availableSpace={availableSpace}
+      />
+    ) : (
+      ""
+    );
 
   return (
     <svg width="100%" height="100%" viewBox="0 0 990 660">
-      <g id="XPS100_2x6-open" class="cls-1">
-        <rect class="cls-6" width="990" height="660" />
-        <g
-          id="Group_8"
-          data-name="Group 8"
-          transform="translate(-524.095 -140.244)"
-        >
-          <rect
-            id="Rectangle_235"
-            data-name="Rectangle 235"
-            class="bg"
-            width="990.193"
-            height="659.688"
-            transform="translate(1514.289 799.933) rotate(-180)"
-          />
-          {stateSpan}
-          <text
-            id="_100_HR"
-            data-name="$100/HR"
-            class="txt-rate"
-            transform="translate(537.143 543.605)"
-          >
-            <tspan x="0" y="0">
-              ${rate}/{rate_div}
-            </tspan>
-          </text>
-          <text
-            id="_146"
-            data-name="146"
-            class="txt-rate"
-            transform="translate(537.143 758.605)"
-          >
-            <tspan x="0" y="0">
-              {availableSpace}
-            </tspan>
-          </text>
-        </g>
-        <text id="AVAIL" class="txt-avail" transform="translate(495 618)">
-          <tspan x="-162.498" y="0">
-            AVAIL
-          </tspan>
-        </text>
-      </g>
+      <rect class="bg" width="990" height="660" />
+      <State status={status} />
+      {detailBlock}
     </svg>
   );
 }
