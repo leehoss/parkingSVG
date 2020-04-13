@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./styles.css";
 
 function Detail(props) {
@@ -15,7 +15,7 @@ function Detail(props) {
         class="txt-rate"
         transform="translate(13.047 618.361)"
       >
-        <tspan x="0" y="0">
+        <tspan id="available-spaces" x="0" y="0">
           {props.availableSpace}
         </tspan>
         <tspan class="txt-avail" x="200" y="0">
@@ -76,14 +76,14 @@ function State(props) {
 }
 
 export default function App() {
-  let status = "FULL";
+  let status = "OPEN";
   let availableSpace = 20;
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
   let ratePeriod = "HR";
   let rate = 50;
 
   if (availableSpace === 0) {
-    status = "CLOSED";
+    status = "FULL";
   }
 
   let detailBlock =
@@ -97,8 +97,28 @@ export default function App() {
       ""
     );
 
+  const svgRef = useRef(null);
+  useEffect(() => {
+    if (svgRef.current) {
+      console.log(svgRef.current);
+      const svgDocument = svgRef.current.ownerDocument;
+      const availableSapcesContainer = document.createElementNS(
+        svgDocument,
+        "g"
+      );
+      const root = svgDocument.getElementById("svgLayout");
+      root.appendChild(availableSapcesContainer);
+    }
+  }, [availableSpace, svgRef]);
+
   return (
-    <svg width="100%" height="100%" viewBox="0 0 990 660">
+    <svg
+      id="svgLayout"
+      ref={svgRef}
+      width="100%"
+      height="100%"
+      viewBox="0 0 990 660"
+    >
       <rect class="bg" width="990" height="660" />
       <State status={status} />
       {detailBlock}
