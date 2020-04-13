@@ -37,12 +37,14 @@ text {
 
 .txt-rate {
   font-size: 125.61px;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.05em;
   fill: var(--clr-traffic-green);
+  font-family: Gotham-Medium, Gotham;
+  font-weight: 500;
 }
 .txt-rate-message {
   font-size: 58.62px;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.051em;
   fill: var(--clr-txt-main);
 }
 .txt-spaces {
