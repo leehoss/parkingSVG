@@ -1,7 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap");
-
+:root {
+  --clr-traffic-red: #e60019;
+  --clr-traffic-orange: #da9d1a;
+  --clr-traffic-green: #008838;
+  --clr-txt-main: #fff;
+  --clr-bg: #000;
+}
+html,
+body {
+  background-color: #444;
+}
 .bg {
-  fill: #000;
+  fill: var(--clr-bg);
 }
 
 text {
@@ -10,30 +20,26 @@ text {
 }
 
 .txt-rate {
-  fill: #fff;
-}
-
-.txt-rate {
   font-size: 212px;
   letter-spacing: -0.1em;
-  fill: #fff;
+  fill: var(--clr-txt-main);
 }
 
 .txt-avail {
   font-size: 106px;
   letter-spacing: -0.1em;
-  fill: #fff;
+  fill: var(--clr-txt-main);
 }
 
 .txt-open {
-  fill: #008838;
+  fill: var(--clr-traffic-green);
   font-size: 254px;
 }
 
 .txt-closed,
 .txt-reserved,
 .txt-full {
-  fill: #e60019;
+  fill: var(--clr-traffic-red);
   font-size: 189px;
   letter-spacing: -0.08em;
 }

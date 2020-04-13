@@ -77,7 +77,7 @@ function State(props) {
 
 export default function App() {
   let status = "OPEN";
-  let availableSpace = 770;
+  let availableSpace = 21;
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
   let ratePeriod = "HR";
   let rate = 50;
@@ -120,7 +120,7 @@ export default function App() {
       tspanAvail.setAttributeNS(
         null,
         "x",
-        tspanElement.getComputedTextLength()
+        tspanElement.getComputedTextLength() + 30
       );
       tspanAvail.setAttributeNS(null, "class", "txt-avail"); // Add tspan element to DOM
       tspanAvail.setAttributeNS(null, "y", "0"); // Add tspan element to DOM
