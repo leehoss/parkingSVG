@@ -178,7 +178,7 @@ export default function App() {
   let viewBox = `0 0 ${canvasWidth} ${canvasHeight}`;
   let slot2 = "NO EVENT PARKING";
   let status = "OPEN";
-  let availableSpace = 10;
+  let availableSpace = 110;
   let availableSpaceMessage = "SPACES";
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
   let ratePeriod = "HR";
