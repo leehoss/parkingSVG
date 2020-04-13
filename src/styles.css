@@ -3,6 +3,9 @@
   --clr-traffic-red: #e60019;
   --clr-traffic-orange: #da9d1a;
   --clr-traffic-green: #008838;
+
+  --clr-yellow: #e7e513;
+
   --clr-txt-main: #fff;
   --clr-bg: #000;
 }
@@ -13,9 +16,22 @@ body {
 .bg {
   fill: var(--clr-bg);
 }
+.fill-red {
+  fill: var(--clr-traffic-red);
+}
 
 text {
-  font-family: Gotham-Medium, Gotham, Arial, Helvetica, sans-serif;
+  font-family: Gotham-Book, Gotham, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.txt-message {
+  fill: var(--clr-txt-main);
+  font-size: 105.08px;
+  font-family: Gotham-Book, Gotham;
+}
+.txt-bold {
+  font-family: Gotham-Medium, Gotham;
   font-weight: 500;
 }
 
@@ -42,4 +58,21 @@ text {
   fill: var(--clr-traffic-red);
   font-size: 189px;
   letter-spacing: -0.08em;
+}
+
+#icon-open .icon-parking {
+  stroke: #fff;
+  stroke-width: 12px;
+  fill: var(--clr-traffic-green);
+}
+.icon-parking-p,
+.icon-parking-x {
+  fill: var(--clr-txt-main);
+}
+#icon-closed .icon-parking {
+  fill: var(--clr-traffic-red);
+}
+
+#message-2 {
+  letter-spacing: -0.6em;
 }
