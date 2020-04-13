@@ -22,7 +22,7 @@ body {
 
 text {
   font-family: Gotham-Book, Gotham, Arial, Helvetica, sans-serif;
-  font-weight: 300;
+  font-weight: 100;
 }
 
 .txt-message {
@@ -45,11 +45,17 @@ text {
   letter-spacing: -0.1em;
   fill: var(--clr-txt-main);
 }
-
-.txt-avail {
-  font-size: 106px;
-  letter-spacing: -0.1em;
-  fill: var(--clr-txt-main);
+.txt-spaces {
+  font-size: 125px;
+  fill: var(--clr-yellow);
+  letter-spacing: -0.02em;
+  font-family: Gotham-Medium, Gotham;
+  font-weight: 500;
+}
+.txt-spaces-message {
+  font-size: 104px;
+  letter-spacing: -0.05em;
+  fill: var(--clr-yellow);
 }
 
 .txt-open {

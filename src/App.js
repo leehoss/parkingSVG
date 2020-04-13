@@ -71,9 +71,15 @@ function Detail(props) {
 
       <text
         id="available-spaces"
-        className="txt-spaces"
-        transform="translate(13.047 618.361)"
-      />
+        text-anchor="middle"
+        transform="translate(516 1239.7)"
+      >
+        <tspan className="txt-spaces">{props.availableSpace}</tspan>
+        <tspan>&nbsp;&nbsp;&nbsp;&nbsp;</tspan>
+        <tspan className="txt-spaces-message">
+          {props.availableSpaceMessage}
+        </tspan>
+      </text>
     </g>
   );
 }
@@ -96,7 +102,7 @@ function State(props) {
           <g id="message">
             <text
               className="txt-message"
-              text-anchor="middle"
+              textAnchor="middle"
               transform="translate(528 665.4)"
             >
               <tspan x="0" y="0">
@@ -105,7 +111,7 @@ function State(props) {
             </text>
             <text
               className="txt-message"
-              text-anchor="middle"
+              textAnchor="middle"
               transform="translate(528 772.6)"
             >
               <tspan x="0" y="0">
@@ -114,7 +120,7 @@ function State(props) {
             </text>
             <text
               className="txt-message"
-              text-anchor="middle"
+              textAnchor="middle"
               transform="translate(528 879.8)"
             >
               <tspan x="0" y="0">
@@ -141,7 +147,7 @@ function State(props) {
             <text
               id="PARKING"
               className="txt-message"
-              text-anchor="middle"
+              textAnchor="middle"
               transform="translate(528 685.4)"
             >
               <tspan class="cls-3" x="0" y="0">
@@ -151,7 +157,7 @@ function State(props) {
             <text
               id="FULL"
               className="txt-message"
-              text-anchor="middle"
+              textAnchor="middle"
               transform="translate(528 793)"
             >
               <tspan x="0" y="0">
@@ -197,44 +203,65 @@ export default function App() {
         ratePeriod2={ratePeriod2}
         rateMessage2={rateMessage2}
         availableSpace={availableSpace}
+        availableSpaceMessage={availableSpaceMessage}
       />
     ) : (
       ""
     );
 
   let message2 = slot2 !== "" && availableSpace ? <Slot2 slot={slot2} /> : "";
-
   const svgRef = useRef(null);
+  /*
+  
   useEffect(() => {
     if (svgRef.current && availableSpace) {
       const svgDocument = svgRef.current.ownerDocument;
       const svgNS = "http://www.w3.org/2000/svg";
-      var textElement = svgDocument.getElementById("available-spaces");
-      textElement.innerHTML = "";
+      var availableSpacesContainer = svgDocument.getElementById(
+        "available-spaces"
+      );
+      var availableSpacesMessageContainer = svgDocument.getElementById(
+        "available-spaces-message"
+      );
+      availableSpacesContainer.innerHTML = "";
+      availableSpacesMessageContainer.innerHTML = "";
+
       let tspanElement = document.createElementNS(svgNS, "tspan"); // Create first tspan element
       let textNode = svgDocument.createTextNode(availableSpace); // Create text in tspan element
 
       tspanElement.appendChild(textNode);
       tspanElement.setAttributeNS(null, "x", "0");
       tspanElement.setAttributeNS(null, "y", "0"); // Add tspan element to DOM
-      textElement.appendChild(tspanElement); // Add text to tspan element
+      tspanElement.setAttributeNS(null, "class", "txt-spaces");
 
       let tspanAvail = document.createElementNS(svgNS, "tspan");
       let textNodeAvail = svgDocument.createTextNode(availableSpaceMessage); // Create text in tspan element
       tspanAvail.appendChild(textNodeAvail);
+      tspanAvail.setAttributeNS(null, "class", "txt-spaces-message"); // Add tspan element to DOM
+      tspanAvail.setAttributeNS(null, "y", "0"); // Add tspan element to DOM
+
+      let tspanAvailablesSpacesMessageWidth = tspanAvail.getComputedTextLength();
+      let tspanAvailablesSpacesWidth = tspanElement.getComputedTextLength();
+      let wordGap = 30;
+      let totalWordWidth =
+        tspanAvailablesSpacesMessageWidth +
+        tspanAvailablesSpacesWidth +
+        wordGap;
+
+      console.log(tspanElement.getComputedTextLength());
 
       tspanAvail.setAttributeNS(
         null,
         "x",
-        tspanElement.getComputedTextLength() + 30
+        tspanElement.getComputedTextLength()
       );
-      tspanAvail.setAttributeNS(null, "class", "txt-avail"); // Add tspan element to DOM
-      tspanAvail.setAttributeNS(null, "y", "0"); // Add tspan element to DOM
-      textElement.appendChild(tspanAvail); // Add text to tspan element
+
+      availableSpacesContainer.appendChild(tspanElement);
+      availableSpacesMessageContainer.appendChild(tspanAvail); // Add text to tspan element
       //NOT SURE THIS IS WORKING ON FIRST LOAD?>
     }
   }, [availableSpace, svgRef]);
-
+*/
   return (
     <svg
       id="svgLayout"
