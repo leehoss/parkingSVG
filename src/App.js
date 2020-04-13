@@ -181,13 +181,15 @@ export default function App() {
   let availableSpace = 110;
   let availableSpaceMessage = "SPACES";
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
-  let ratePeriod = "HR";
-  let rate = 20;
-  let rateMessage = "W/ VALIDATION";
 
-  let ratePeriod2 = "HR";
-  let rate2 = 50;
-  let rateMessage2 = "W/O VALIDATION";
+  let ratesArray = [
+    {
+      rate: 20,
+      ratePeriod: "HR",
+      text: "W/ VALIDATION"
+    },
+    { rate: 50, ratePeriod: "HR", text: "W/O VALIDATION" }
+  ];
 
   if (availableSpace === 0) {
     status = "FULL";
@@ -196,12 +198,12 @@ export default function App() {
   let detailBlock =
     status === "OPEN" ? (
       <Detail
-        rate={rate}
-        ratePeriod={ratePeriod}
-        rateMessage={rateMessage}
-        rate2={rate2}
-        ratePeriod2={ratePeriod2}
-        rateMessage2={rateMessage2}
+        rate={ratesArray[0].rate}
+        ratePeriod={ratesArray[0].ratePeriod}
+        rateMessage={ratesArray[0].text}
+        rate2={ratesArray[1].rate}
+        ratePeriod2={ratesArray[1].ratePeriod}
+        rateMessage2={ratesArray[1].text}
         availableSpace={availableSpace}
         availableSpaceMessage={availableSpaceMessage}
       />
