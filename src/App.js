@@ -26,19 +26,52 @@ function Slot2(props) {
 function Detail(props) {
   return (
     <g>
-      <text
-        id="_100_HR"
-        className="txt-rate"
-        transform="translate(13.047 403.361)"
-      >
-        <tspan x="0" y="0">
-          ${props.rate}/{props.rate_div}
-        </tspan>
-      </text>
+      <g id="rates">
+        <text
+          data-name="$20/HR"
+          className="txt-rate"
+          text-anchor="middle"
+          transform="translate(264 1024)"
+        >
+          <tspan x="0" y="0">
+            ${props.rate}/{props.ratePeriod}
+          </tspan>
+        </text>
+        <text
+          data-name="W/ VALIDATION"
+          className="txt-rate-message"
+          text-anchor="middle"
+          transform="translate(264 1099.4)"
+        >
+          <tspan x="0" y="0">
+            {props.rateMessage}
+          </tspan>
+        </text>
+        <text
+          data-name="$50/HR"
+          className="txt-rate"
+          text-anchor="middle"
+          transform="translate(780 1024)"
+        >
+          <tspan x="0" y="0">
+            ${props.rate2}/{props.ratePeriod2}
+          </tspan>
+        </text>
+        <text
+          data-name="W/O VALIDATION"
+          className="txt-rate-message"
+          text-anchor="middle"
+          transform="translate(780 1099.4)"
+        >
+          <tspan x="0" y="0">
+            {props.rateMessage2}
+          </tspan>
+        </text>
+      </g>
+
       <text
         id="available-spaces"
-        data-name="146"
-        className="txt-rate"
+        className="txt-spaces"
         transform="translate(13.047 618.361)"
       />
     </g>
@@ -92,30 +125,6 @@ function State(props) {
         </g>
       );
       break;
-    case "RESERVED":
-      state = (
-        <g>
-          <text
-            id="RESERVED"
-            className="txt-reserved"
-            transform="translate(15 172)"
-          >
-            <tspan x="0" y="0">
-              RESERVED
-            </tspan>
-          </text>
-          <text
-            id="ONLY"
-            className="txt-reserved"
-            transform="translate(19.547 339.651)"
-          >
-            <tspan x="0" y="0">
-              ONLY
-            </tspan>
-          </text>
-        </g>
-      );
-      break;
     default:
       state = (
         <g id="icon-closed" transform="translate(0 4)">
@@ -163,10 +172,16 @@ export default function App() {
   let viewBox = `0 0 ${canvasWidth} ${canvasHeight}`;
   let slot2 = "NO EVENT PARKING";
   let status = "OPEN";
-  let availableSpace = 0;
+  let availableSpace = 10;
+  let availableSpaceMessage = "SPACES";
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
   let ratePeriod = "HR";
-  let rate = 50;
+  let rate = 20;
+  let rateMessage = "W/ VALIDATION";
+
+  let ratePeriod2 = "HR";
+  let rate2 = 50;
+  let rateMessage2 = "W/O VALIDATION";
 
   if (availableSpace === 0) {
     status = "FULL";
@@ -176,7 +191,11 @@ export default function App() {
     status === "OPEN" ? (
       <Detail
         rate={rate}
-        rate_div={ratePeriod}
+        ratePeriod={ratePeriod}
+        rateMessage={rateMessage}
+        rate2={rate2}
+        ratePeriod2={ratePeriod2}
+        rateMessage2={rateMessage2}
         availableSpace={availableSpace}
       />
     ) : (
@@ -201,7 +220,7 @@ export default function App() {
       textElement.appendChild(tspanElement); // Add text to tspan element
 
       let tspanAvail = document.createElementNS(svgNS, "tspan");
-      let textNodeAvail = svgDocument.createTextNode("AVAIL"); // Create text in tspan element
+      let textNodeAvail = svgDocument.createTextNode(availableSpaceMessage); // Create text in tspan element
       tspanAvail.appendChild(textNodeAvail);
 
       tspanAvail.setAttributeNS(

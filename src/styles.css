@@ -36,7 +36,12 @@ text {
 }
 
 .txt-rate {
-  font-size: 212px;
+  font-size: 125.61px;
+  letter-spacing: -0.1em;
+  fill: var(--clr-traffic-green);
+}
+.txt-rate-message {
+  font-size: 58.62px;
   letter-spacing: -0.1em;
   fill: var(--clr-txt-main);
 }
