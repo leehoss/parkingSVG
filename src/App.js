@@ -1,6 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import "./styles.css";
 
+/*
+CHANGE var availableSpace 
+OR change Status 
+*/
+
 function Slot2(props) {
   return (
     <g id="no-event-parking">
@@ -178,7 +183,7 @@ export default function App() {
   let viewBox = `0 0 ${canvasWidth} ${canvasHeight}`;
   let slot2 = "NO EVENT PARKING";
   let status = "OPEN";
-  let availableSpace = 110;
+  let availableSpace = 100;
   let availableSpaceMessage = "SPACES";
   //let availableSpaceFill = availableSpace.toString().padStart(4, "0");
 

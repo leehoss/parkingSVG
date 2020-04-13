@@ -3,11 +3,14 @@
   --clr-traffic-red: #e60019;
   --clr-traffic-orange: #da9d1a;
   --clr-traffic-green: #008838;
-
   --clr-yellow: #e7e513;
-
   --clr-txt-main: #fff;
   --clr-bg: #000;
+
+  --font-face-bold: Gotham-Medium, Gotham, Arial, Helvetica, sans-serif;
+  --font-weight-bold: 500;
+  --font-face-normal: Gotham-Book, Gotham, Arial, Helvetica, sans-serif;
+  --font-weight-normal: 100;
 }
 html,
 body {
@@ -21,26 +24,25 @@ body {
 }
 
 text {
-  font-family: Gotham-Book, Gotham, Arial, Helvetica, sans-serif;
-  font-weight: 100;
+  font-family: var(--font-face-normal);
+  font-weight: var(--font-weight-normal);
 }
 
 .txt-message {
   fill: var(--clr-txt-main);
   font-size: 105.08px;
-  font-family: Gotham-Book, Gotham;
 }
 .txt-bold {
-  font-family: Gotham-Medium, Gotham;
-  font-weight: 500;
+  font-family: var(--font-face-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 .txt-rate {
   font-size: 125.61px;
   letter-spacing: -0.05em;
   fill: var(--clr-traffic-green);
-  font-family: Gotham-Medium, Gotham;
-  font-weight: 500;
+  font-family: var(--font-face-bold);
+  font-weight: var(--font-weight-bold);
 }
 .txt-rate-message {
   font-size: 58.62px;
@@ -51,8 +53,8 @@ text {
   font-size: 125px;
   fill: var(--clr-yellow);
   letter-spacing: -0.02em;
-  font-family: Gotham-Medium, Gotham;
-  font-weight: 500;
+  font-family: var(--font-face-bold);
+  font-weight: var(--font-weight-bold);
 }
 .txt-spaces-message {
   font-size: 104px;
