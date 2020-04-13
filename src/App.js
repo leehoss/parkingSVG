@@ -29,54 +29,67 @@ function Slot2(props) {
 }
 
 function Detail(props) {
-  return (
-    <g>
-      <g id="rates">
-        <text
-          data-name="$20/HR"
-          className="txt-rate"
-          text-anchor="middle"
-          transform="translate(264 1024)"
-        >
+  let ratesArray = props.ratesArray;
+  let rate2 = "";
+  let translateX =
+    ratesArray.length > 1 ? props.canvasWidth / 4 : props.canvasWidth / 2;
+
+  let rate1TX = `translate(${translateX} 1024)`;
+  let rate2TX = `translate(${translateX * 3} 1024)`;
+
+  let rate1 = (
+    <g transform={rate1TX}>
+      {" "}
+      <text data-name="$20/HR" className="txt-rate" textAnchor="middle">
+        <tspan x="0" y="0">
+          ${ratesArray[0].rate}/{ratesArray[0].ratePeriod}
+        </tspan>
+      </text>
+      <text
+        data-name="W/ VALIDATION"
+        className="txt-rate-message"
+        textAnchor="middle"
+        transform="translate(0 78)"
+      >
+        <tspan x="0" y="0">
+          {ratesArray[0].text}
+        </tspan>
+      </text>
+    </g>
+  );
+  console.log(ratesArray.length);
+  if (ratesArray.length > 1) {
+    rate2 = (
+      <g transform={rate2TX}>
+        <text data-name="$50/HR" className="txt-rate" textAnchor="middle">
           <tspan x="0" y="0">
-            ${props.rate}/{props.ratePeriod}
-          </tspan>
-        </text>
-        <text
-          data-name="W/ VALIDATION"
-          className="txt-rate-message"
-          text-anchor="middle"
-          transform="translate(264 1099.4)"
-        >
-          <tspan x="0" y="0">
-            {props.rateMessage}
-          </tspan>
-        </text>
-        <text
-          data-name="$50/HR"
-          className="txt-rate"
-          text-anchor="middle"
-          transform="translate(780 1024)"
-        >
-          <tspan x="0" y="0">
-            ${props.rate2}/{props.ratePeriod2}
+            ${ratesArray[1].rate}/{ratesArray[1].ratePeriod}
           </tspan>
         </text>
         <text
           data-name="W/O VALIDATION"
           className="txt-rate-message"
-          text-anchor="middle"
-          transform="translate(780 1099.4)"
+          textAnchor="middle"
+          transform="translate(0 78)"
         >
           <tspan x="0" y="0">
-            {props.rateMessage2}
+            {ratesArray[1].text}
           </tspan>
         </text>
+      </g>
+    );
+  }
+
+  return (
+    <g>
+      <g id="rates">
+        {rate1}
+        {rate2}
       </g>
 
       <text
         id="available-spaces"
-        text-anchor="middle"
+        textAnchor="middle"
         transform="translate(516 1239.7)"
       >
         <tspan className="txt-spaces">{props.availableSpace}</tspan>
@@ -96,7 +109,7 @@ function State(props) {
         <g id="icon-open">
           <path
             id="Path_66571"
-            class="icon-parking"
+            className="icon-parking"
             d="M528.5,43.4C388.7,43.4,274.9,157.2,274.9,297S388.7,550.6,528.5,550.6,782.1,436.8,782.1,297,668.4,43.4,528.5,43.4"
           />
           <path
@@ -203,12 +216,8 @@ export default function App() {
   let detailBlock =
     status === "OPEN" ? (
       <Detail
-        rate={ratesArray[0].rate}
-        ratePeriod={ratesArray[0].ratePeriod}
-        rateMessage={ratesArray[0].text}
-        rate2={ratesArray[1].rate}
-        ratePeriod2={ratesArray[1].ratePeriod}
-        rateMessage2={ratesArray[1].text}
+        ratesArray={ratesArray}
+        canvasWidth={canvasWidth}
         availableSpace={availableSpace}
         availableSpaceMessage={availableSpaceMessage}
       />
