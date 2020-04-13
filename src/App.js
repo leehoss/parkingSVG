@@ -99,7 +99,7 @@ export default function App() {
 
   const svgRef = useRef(null);
   useEffect(() => {
-    if (svgRef.current && availableSpace) {
+    if (svgRef.current && availableSpace && status === 'OPEN') {
       const svgDocument = svgRef.current.ownerDocument;
       const svgNS = "http://www.w3.org/2000/svg";
       var textElement = svgDocument.getElementById("available-spaces");
