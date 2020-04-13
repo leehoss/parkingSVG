@@ -106,7 +106,6 @@ export default function App() {
       textElement.innerHTML = "";
       let tspanElement = document.createElementNS(svgNS, "tspan"); // Create first tspan element
       let textNode = svgDocument.createTextNode(availableSpace); // Create text in tspan element
-      translateYPt = 0;
 
       tspanElement.appendChild(textNode);
       tspanElement.setAttributeNS(null, "x", "0");
@@ -126,7 +125,6 @@ export default function App() {
       tspanAvail.setAttributeNS(null, "y", "0"); // Add tspan element to DOM
       textElement.appendChild(tspanAvail); // Add text to tspan element
       //NOT SURE THIS IS WORKING ON FIRST LOAD?>
-      console.log(tspanElement.getComputedTextLength());
     }
   }, [availableSpace, svgRef]);
 
